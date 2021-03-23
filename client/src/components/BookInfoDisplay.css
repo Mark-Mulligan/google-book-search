@@ -1,9 +1,14 @@
 .book-top-row {
   display: grid;
-  grid-template-columns: auto 200px;
+  grid-template-columns: auto 190px;
 }
 
 .book-bottom-row {
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 190px auto;
+}
+
+.book-bottom-row-col-2 {
+  max-height: 201px;
+  overflow: scroll;
 }

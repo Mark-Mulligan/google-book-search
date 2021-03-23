@@ -6,6 +6,13 @@ import BookInfoDisplay from "../components/BookInfoDisplay";
 class SearchPage extends React.Component {
   state = { searchResults: [], searchTerm: "" };
 
+  onSaveClick = (index) => {
+    //use provided id from google to idenify in mongoose
+    //this will prevent the same book from being added twice
+    console.log(this.state.searchResults[index]);
+    console.log(index);
+  };
+
   onSearchSubmit = async (event) => {
     event.preventDefault();
     const response = await axios.post("/api/books/search", {
@@ -40,19 +47,26 @@ class SearchPage extends React.Component {
             onSearchInputChange={this.onSearchInputChange}
           />
         </div>
-          {this.state.searchResults && this.state.searchResults.length > 0 && ( 
+        {this.state.searchResults && this.state.searchResults.length > 0 && (
           <div>
             <div className="mt-4">
-              <BookInfoDisplay 
-                title={this.state.searchResults[0].volumeInfo.title}
-                author={this.state.searchResults[0].volumeInfo.authors}
-                infoLink={this.state.searchResults[0].volumeInfo.infoLink}
-                description={this.state.searchResults[0].volumeInfo.description}
-                imageLink={this.state.searchResults[0].volumeInfo.imageLinks.thumbnail}
-              />
+              {this.state.searchResults.map((book, index) => {
+                return (
+                  <BookInfoDisplay
+                    key={book.id}
+                    title={book.volumeInfo.title}
+                    author={book.volumeInfo.authors}
+                    infoLink={book.volumeInfo.infoLink}
+                    description={book.volumeInfo.description}
+                    imageLink={book.volumeInfo.imageLinks.thumbnail}
+                    actionBtn="Save"
+                    onActionBtnClick={() => this.onSaveClick(index)}
+                  />
+                );
+              })}
             </div>
           </div>
-         )}
+        )}
       </div>
     );
   }

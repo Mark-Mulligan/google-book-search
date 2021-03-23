@@ -1,9 +1,9 @@
 import React from "react";
 import './BookInfoDisplay.css';
 
-const BookInfoDisplay= ({ title, author, infoLink, imageLink, description }) => {
+const BookInfoDisplay= ({ title, author, infoLink, imageLink, description, actionBtn, onActionBtnClick }) => {
   return (
-    <div>
+    <div className="book-info-container mb-5">
       <div className="book-top-row">
         <div className="book-top-row-col-1">
           <h3>{title}</h3>
@@ -11,7 +11,7 @@ const BookInfoDisplay= ({ title, author, infoLink, imageLink, description }) => 
         </div>
         <div className="book-top-row-col-2 text-right">
           <a href={infoLink} rel="noreferrer" target="_blank" className="btn btn-outline-dark mr-2">View</a>
-          <button className="btn btn-outline-dark">Delete</button>
+          <button className="btn btn-outline-dark" onClick={onActionBtnClick}>{actionBtn}</button>
         </div>
       </div>
       <div className="book-bottom-row">
