@@ -13,6 +13,7 @@ node_modules/
 /build
 
 # misc
+temp.js
 .env
 .DS_Store
 .env.local
