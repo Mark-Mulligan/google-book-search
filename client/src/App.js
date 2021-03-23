@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
+import SavedPage from "./pages/SavedPage";
+import Navbar from "./components/Navbar";
 import getClientId from "./temp.js";
 
 class App extends React.Component {
@@ -41,19 +43,45 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
         <Route
+          path="/"
+          render={(props) => (
+            <Navbar
+              {...props}
+              isSignedIn={this.state.isSignedIn}
+              onSignOutClick={this.onSignOut}
+            />
+          )}
+        />
+
+        <Switch>
+          <Route
             exact
             path="/"
             render={(props) => (
-              <LoginPage {...props} isSignedIn={this.state.isSignedIn} onSignInClick={this.onSignIn} />
+              <LoginPage
+                {...props}
+                isSignedIn={this.state.isSignedIn}
+                onSignInClick={this.onSignIn}
+              />
             )}
           />
           <Route
             exact
             path="/search"
-            render={props => (
-              <SearchPage {...props} isSignedIn={this.state.isSignedIn} onSignOutClick={this.onSignOut} />
+            render={(props) => (
+              <SearchPage
+                {...props}
+                isSignedIn={this.state.isSignedIn}
+                onSignOutClick={this.onSignOut}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/saved"
+            render={(props) => (
+              <SavedPage {...props} isSignedIn={this.state.isSignedIn} />
             )}
           />
         </Switch>

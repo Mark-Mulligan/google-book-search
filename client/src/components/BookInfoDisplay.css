@@ -1,0 +1,9 @@
+.book-top-row {
+  display: grid;
+  grid-template-columns: auto 200px;
+}
+
+.book-bottom-row {
+  display: grid;
+  grid-template-columns: 200px auto;
+}

@@ -1,24 +1,12 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 
-const SearchForm = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const onSearchSubmit = async (event) => {
-    event.preventDefault();
-    const response = await axios.post("/api/books/search", {
-      searchTerm: searchTerm,
-    });
-
-    console.log(response.data);
-  };
-
+const SearchForm = (props) => {
   return (
-    <div className="container">
-      <form onSubmit={onSearchSubmit}>
+    <div>
+      <form onSubmit={props.onSearchSubmit}>
         <input
-          onChange={(e) => setSearchTerm(e.target.value)}
-          value={searchTerm}
+          onChange={props.onSearchInputChange}
+          value={props.searchTerm}
           className="form-control"
           placeholder="search book title"
         />
