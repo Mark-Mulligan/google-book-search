@@ -31,5 +31,16 @@ exports.getUserBooks = async (req, res) => {
     console.log(error);
     res.status(500).json({ success: false, data: 'There was an error retreving the users books.' });
   }
- 
+}
+
+exports.deleteBook = async (req, res) => {
+  const { bookid, userid } = req.query;
+
+  try {
+    const deletedBook = await Book.deleteOne({ googleBookId: bookid, userId: userid });
+    res.status(200).json({ success: true, data: deletedBook });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, data: 'There was an error deleting the book' });
+  }
 }
