@@ -6,11 +6,23 @@ import BookInfoDisplay from "../components/BookInfoDisplay";
 class SearchPage extends React.Component {
   state = { searchResults: [], searchTerm: "" };
 
-  onSaveClick = (index) => {
-    //use provided id from google to idenify in mongoose
-    //this will prevent the same book from being added twice
-    console.log(this.state.searchResults[index]);
-    console.log(index);
+  onSaveClick = async (index) => {
+    const clickedBook = this.state.searchResults[index];
+
+    try {
+      const { data } = await axios.post("/api/books", {
+        googleBookId: clickedBook.id,
+        title: clickedBook.volumeInfo.title,
+        authors: clickedBook.volumeInfo.authors,
+        description: clickedBook.volumeInfo.description,
+        imageLink: clickedBook.volumeInfo.imageLinks.thumbnail,
+        infoLink: clickedBook.volumeInfo.infoLink,
+        userId: this.props.userId
+      })
+      console.log(data);
+    } catch(error) {
+      console.log(error);
+    }
   };
 
   onSearchSubmit = async (event) => {
@@ -38,6 +50,7 @@ class SearchPage extends React.Component {
           ) : (
             <div>User Not Signed In</div>
           )}
+          {this.props.userId}
         </div>
 
         <div className="mt-3">

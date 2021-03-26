@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import getClientId from "./temp.js";
 
 class App extends React.Component {
-  state = { isSignedIn: false };
+  state = { isSignedIn: null, userId: null };
 
   componentDidMount() {
     window.gapi.load("client:auth2", () => {
@@ -18,14 +18,20 @@ class App extends React.Component {
         })
         .then(() => {
           this.auth = window.gapi.auth2.getAuthInstance();
-          this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+          this.setState({
+            isSignedIn: this.auth.isSignedIn.get(),
+            userId: this.auth.currentUser.get().getId(),
+          });
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
   }
 
   onAuthChange = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+    this.setState({
+      isSignedIn: this.auth.isSignedIn.get(),
+      userId: this.auth.currentUser.get().getId(),
+    });
   };
 
   onSignIn = (history) => {
@@ -73,6 +79,7 @@ class App extends React.Component {
               <SearchPage
                 {...props}
                 isSignedIn={this.state.isSignedIn}
+                userId={this.state.userId}
                 onSignOutClick={this.onSignOut}
               />
             )}
@@ -81,7 +88,12 @@ class App extends React.Component {
             exact
             path="/saved"
             render={(props) => (
-              <SavedPage {...props} isSignedIn={this.state.isSignedIn} />
+              <SavedPage
+                {...props}
+                isSignedIn={this.state.isSignedIn}
+                userId={this.state.userId}
+                onSignOutClick={this.onSignOut}
+              />
             )}
           />
         </Switch>
