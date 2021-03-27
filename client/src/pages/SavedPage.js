@@ -8,7 +8,6 @@ class SavedPage extends React.Component {
   getUserBooks = async () => {
     try {
       const { data } = await axios.get(`/api/books/user/${this.props.userId}`);
-      console.log(data);
       this.setState({ userBooks: data.data });
     } catch (error) {
       console.log(error);

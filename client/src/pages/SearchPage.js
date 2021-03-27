@@ -19,7 +19,6 @@ class SearchPage extends React.Component {
         infoLink: clickedBook.volumeInfo.infoLink,
         userId: this.props.userId
       })
-      console.log(data);
       if (data.book) {
         window.alert('Book already in your saved books.')
       } else {
@@ -37,7 +36,6 @@ class SearchPage extends React.Component {
     });
 
     this.setState({ searchResults: response.data.data });
-    console.log(response.data.data);
   };
 
   onSearchInputChange = (event) => {
@@ -89,24 +87,5 @@ class SearchPage extends React.Component {
     );
   }
 }
-
-/* 
-title` - Title of the book from the Google Books API
-
-* `authors` - The books's author(s) as returned from the Google Books API
-
-* `description` - The book's description as returned from the Google Books API
-
-* `image` - The Book's thumbnail image as returned from the Google Books API
-
-* `link`
- <p>{this.state.searchResults[0].volumeInfo.title}</p>
-              <p>{this.state.searchResults[0].volumeInfo.authors}</p>
-              <p>{this.state.searchResults[0].volumeInfo.description}</p>
-              <p>{this.state.searchResults[0].volumeInfo.infoLink}</p>
-              <p>
-                {this.state.searchResults[0].volumeInfo.imageLinks.thumbnail}
-              </p>
-*/
 
 export default SearchPage;

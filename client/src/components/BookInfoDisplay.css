@@ -3,6 +3,10 @@
   grid-template-columns: auto 190px;
 }
 
+.book-top-row-col-2 {
+  text-align: right;
+}
+
 .book-bottom-row {
   display: grid;
   grid-template-columns: 190px auto;
@@ -17,4 +21,32 @@
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 15px;
+}
+
+@media (max-width: 550px) {
+  .book-info-container {
+    text-align: center;
+  }
+
+  .book-top-row {
+    grid-template-columns: auto;
+  }
+
+  .book-top-row-col-2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .book-bottom-row {
+    grid-template-columns: auto;
+  }
+
+  .book-bottom-row-col-1 {
+    margin-bottom: 20px;
+  }
+
+  .book-bottom-row-col-2 {
+    text-align: left;
+  }
+
 }

@@ -1,9 +1,10 @@
 const path = require("path");
 const router = require("express").Router();
-const { saveBook, getUserBooks, deleteBook, getAllBooks } = require('../controllers/books');
+const { saveBook, getUserBooks, deleteBook, getAllBooks, getGoogleClientId } = require('../controllers/books');
 
 // If no API routes are hit, send the React app
 
+router.route("/api/clientid").get(getGoogleClientId);
 router.route("/api/books").get(getAllBooks);
 router.route("/api/books").post(saveBook); 
 router.route("/api/books").delete(deleteBook);

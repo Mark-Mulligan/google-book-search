@@ -1,21 +1,30 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import axios from 'axios';
 import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
 import SavedPage from "./pages/SavedPage";
 import Navbar from "./components/Navbar";
-import getClientId from "./temp.js";
 import backgroundImage from "./images/book-background.jpg";
 import './App.css';
 
 class App extends React.Component {
   state = { isSignedIn: null, userId: null };
 
-  componentDidMount() {
+  getClientId = async () => {
+    try {
+      const { data } = await axios.get("/api/clientid");
+      this.setAuth(data.id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  setAuth = (clientId) => {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
-          clientId: getClientId(),
+          clientId: clientId,
           scope: "email",
         })
         .then(() => {
@@ -27,6 +36,10 @@ class App extends React.Component {
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
+  }
+
+  componentDidMount() {
+    this.getClientId();
   }
 
   onAuthChange = () => {

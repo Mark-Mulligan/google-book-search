@@ -1,4 +1,6 @@
+require("dotenv").config();
 const Book = require("../models/Book");
+
 
 exports.saveBook = async (req, res) => {
   const {
@@ -82,3 +84,7 @@ exports.deleteBook = async (req, res) => {
       .json({ success: false, data: "There was an error deleting the book" });
   }
 };
+
+exports.getGoogleClientId = (req, res) => {
+  res.json({ id: process.env.CLIENT_ID });
+}

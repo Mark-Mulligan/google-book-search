@@ -9,7 +9,7 @@ const BookInfoDisplay= ({ title, author, infoLink, imageLink, description, actio
           <h3>{title}</h3>
           <p>By: {author}</p>
         </div>
-        <div className="book-top-row-col-2 text-right">
+        <div className="book-top-row-col-2">
           <a href={infoLink} rel="noreferrer" target="_blank" className="btn btn-outline-dark mr-2">View</a>
           <button className="btn btn-outline-dark" onClick={onActionBtnClick}>{actionBtn}</button>
         </div>
