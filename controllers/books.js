@@ -39,6 +39,16 @@ exports.saveBook = async (req, res) => {
   }
 };
 
+exports.getAllBooks = async (req, res) => {
+  console.log('route hit');
+  try {
+    const allBooks = await Book.find({});
+    res.json(allBooks);
+  } catch (error){
+    console.log(error)
+  }
+}
+
 exports.getUserBooks = async (req, res) => {
   const { userId } = req.params;
 

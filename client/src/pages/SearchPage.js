@@ -72,11 +72,11 @@ class SearchPage extends React.Component {
                 return (
                   <BookInfoDisplay
                     key={book.id}
-                    title={book.volumeInfo.title}
-                    author={book.volumeInfo.authors}
-                    infoLink={book.volumeInfo.infoLink}
-                    description={book.volumeInfo.description}
-                    imageLink={book.volumeInfo.imageLinks.thumbnail}
+                    title={book.volumeInfo.title || ''}
+                    author={book.volumeInfo.authors || ''}
+                    infoLink={book.volumeInfo.infoLink || ''}
+                    description={book.volumeInfo.description || ''}
+                    imageLink={book.volumeInfo.imageLinks?.thumbnail || ''}
                     actionBtn="Save"
                     onActionBtnClick={() => this.onSaveClick(index)}
                   />
