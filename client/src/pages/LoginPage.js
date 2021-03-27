@@ -36,7 +36,7 @@ const LoginPage = ({ onSignInClick, history, isSignedIn }) => {
         <p className={classes.paragraph}>Search for books through google books.  Save those you want for later.</p>
         <button
           onClick={() => onSignInClick(history)}
-          className="btn btn-danger btn-block"
+          className="btn btn-dark btn-block"
         >
           <i className="fab fa-google mr-1"></i>
           Sign In With Google

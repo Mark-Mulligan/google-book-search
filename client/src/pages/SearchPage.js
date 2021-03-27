@@ -20,7 +20,11 @@ class SearchPage extends React.Component {
         userId: this.props.userId
       })
       console.log(data);
-      window.alert('Book successfuly saved!');
+      if (data.book) {
+        window.alert('Book already in your saved books.')
+      } else {
+        window.alert('Book successfuly saved!');
+      }
     } catch(error) {
       console.log(error);
     }

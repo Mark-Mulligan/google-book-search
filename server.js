@@ -29,7 +29,6 @@ app.post("/api/books/search", async (req, res) => {
     const { data } = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.BOOKS_API_KEY}`
     );
-    console.log(data);
     res.status(200).json({ success: true, data: data.items });
   } catch (error) {
     console.log(error);
