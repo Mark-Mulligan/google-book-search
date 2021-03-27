@@ -24,7 +24,7 @@ class App extends React.Component {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
-          clientId: clientId,
+          clientId: process.env.REACT_APP_CLIENT_ID,
           scope: "email",
         })
         .then(() => {
