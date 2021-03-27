@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-const LoginPage = ({ onSignInClick, history, isSignedIn }) => {
+const LoginPage = ({ onSignInClick, history }) => {
   const classes = useStyles();
 
   return (
