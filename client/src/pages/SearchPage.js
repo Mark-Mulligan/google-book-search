@@ -20,6 +20,7 @@ class SearchPage extends React.Component {
         userId: this.props.userId
       })
       console.log(data);
+      window.alert('Book successfuly saved!');
     } catch(error) {
       console.log(error);
     }
@@ -38,6 +39,12 @@ class SearchPage extends React.Component {
   onSearchInputChange = (event) => {
     this.setState({ searchTerm: event.target.value });
   };
+
+  componentDidUpdate() {
+    if (this.props.isSignedIn === false) {
+      this.props.history.push("/");
+    }
+  }
 
   render() {
     return (

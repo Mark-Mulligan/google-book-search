@@ -40,7 +40,9 @@ class SavedPage extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.userId && !this.state.apiCalled) {
+    if (this.props.isSignedIn === false) {
+      this.props.history.push("/");
+    }else if (this.props.userId && !this.state.apiCalled) {
       this.getUserBooks();
       this.setState({ apiCalled: true });
     }
