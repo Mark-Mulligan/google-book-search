@@ -18,10 +18,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.get("/api", (req, res, next) => {
-  res.send("Api running");
-});
-
 app.post("/api/books/search", async (req, res) => {
   const { searchTerm } = req.body;
 
