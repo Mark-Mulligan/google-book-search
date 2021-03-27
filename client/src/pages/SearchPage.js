@@ -50,14 +50,8 @@ class SearchPage extends React.Component {
     return (
       <div className="container mt-5">
         <div className="text-center">
-          <h1>(React) Google Books Search</h1>
-          <h2>Search And Save Books of Interest</h2>
-          {this.props.isSignedIn ? (
-            <div>User Signed In</div>
-          ) : (
-            <div>User Not Signed In</div>
-          )}
-          {this.props.userId}
+          <h1 className="white">Google Books Search</h1>
+          <h2 className="white">Search And Save Books of Interest</h2>
         </div>
 
         <div className="mt-3">

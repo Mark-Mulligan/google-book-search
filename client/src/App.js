@@ -5,6 +5,8 @@ import SearchPage from "./pages/SearchPage";
 import SavedPage from "./pages/SavedPage";
 import Navbar from "./components/Navbar";
 import getClientId from "./temp.js";
+import backgroundImage from "./images/book-background.jpg";
+import './App.css';
 
 class App extends React.Component {
   state = { isSignedIn: null, userId: null };
@@ -48,56 +50,63 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Route
-          path="/"
-          render={(props) => (
-            <Navbar
-              {...props}
-              isSignedIn={this.state.isSignedIn}
-              onSignOutClick={this.onSignOut}
-            />
-          )}
-        />
-
-        <Switch>
+      <div style={{minHeight: "100vh",
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      overflow: 'scroll'}}>
+        <BrowserRouter>
           <Route
-            exact
             path="/"
             render={(props) => (
-              <LoginPage
+              <Navbar
                 {...props}
                 isSignedIn={this.state.isSignedIn}
-                onSignInClick={this.onSignIn}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/search"
-            render={(props) => (
-              <SearchPage
-                {...props}
-                isSignedIn={this.state.isSignedIn}
-                userId={this.state.userId}
                 onSignOutClick={this.onSignOut}
               />
             )}
           />
-          <Route
-            exact
-            path="/saved"
-            render={(props) => (
-              <SavedPage
-                {...props}
-                isSignedIn={this.state.isSignedIn}
-                userId={this.state.userId}
-                onSignOutClick={this.onSignOut}
-              />
-            )}
-          />
-        </Switch>
-      </BrowserRouter>
+
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <LoginPage
+                  {...props}
+                  isSignedIn={this.state.isSignedIn}
+                  onSignInClick={this.onSignIn}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/search"
+              render={(props) => (
+                <SearchPage
+                  {...props}
+                  isSignedIn={this.state.isSignedIn}
+                  userId={this.state.userId}
+                  onSignOutClick={this.onSignOut}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/saved"
+              render={(props) => (
+                <SavedPage
+                  {...props}
+                  isSignedIn={this.state.isSignedIn}
+                  userId={this.state.userId}
+                  onSignOutClick={this.onSignOut}
+                />
+              )}
+            />
+          </Switch>
+        </BrowserRouter>
+      </div>
     );
   }
 }

@@ -52,14 +52,7 @@ class SavedPage extends React.Component {
   render() {
     return (
       <div className="mt-5 container">
-        <h2>Saved Books</h2>
-        {this.props.isSignedIn ? (
-            <div>User Signed In</div>
-          ) : (
-            <div>User Not Signed In</div>
-          )}
-          {this.props.userId}
-
+        <h1 className="text-center white mb-4">Saved Books</h1>
         {this.state.userBooks.length > 0 && this.state.userBooks.map((book, index) => {
           return (
             <BookInfoDisplay
