@@ -43,10 +43,10 @@ cd directory/projectdirectory
 npm install
 ```
 
-* Step 4: Set up google2 auth.  You will need to follow the instructions below and update the environment variables both in the client.  
+* Step 4: Set up google oauth2.  You will need to follow the instructions below and update the environment variables both in the client. <br> 
 https://developers.google.com/identity/protocols/oauth2/web-server
 
-* Step 5: Update the environment variables in the config folder in db.js to allow you to access your local instance of mongoDB;
+* Step 5: Update the environment variables in the config folder in db.js to allow you to access your local instance of mongoDB. <br>
 https://docs.mongodb.com/manual/administration/install-community/
 
 * Step 6: While in the project directory, run the program using node using the command below. Open you browser and navigate to localhost:3000 to view the application (Make sure your mongoDB instance is running and you have set up google o auth).
